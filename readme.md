@@ -17,7 +17,7 @@
 * **Terminate**
     * To terminate Speech Recognition
 
-### Advanced Functionalities & Use Cases
+## Advanced Functionalities & Use Cases
 * *How are you ?* **go**
     * Gives you a random greeting
 * *Weather* **go**
@@ -72,6 +72,14 @@
 * Back-End
     * Flask (Python Web Server)
     * Javascript (Web Speech API)
+
+## Python Dependecies & modules
+* Make sure that your system has these modules
+    * flask framework
+    * os
+    * wikipedia
+    * geocoder
+    * pyowm
 
 ## Start
 * Driver file -> brain.py
