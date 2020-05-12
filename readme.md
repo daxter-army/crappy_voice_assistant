@@ -76,4 +76,4 @@
 ## Start
 * Driver file -> brain.py
 * hit **python brain.py** & visit **http://localhost:5000** to see MAGIC 🔮
-* !Works best on Chrome, at fullscreen
+* Works best on Chrome, at fullscreen!
