@@ -18,7 +18,6 @@
     * To terminate Speech Recognition
 
 ### Advanced Functionalities & Use Cases
-
 * *How are you ?* **go**
     * Gives you a random greeting
 * *Weather* **go**
@@ -39,7 +38,6 @@
     * Searches for it on google
 
 ## Voice Commands & Functions of Little Crappy
-
 * Say **Knock Knock** to go to Little Crappy
 
 * **Knock Knock**
