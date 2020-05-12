@@ -99,7 +99,7 @@ function readOutLoud(message){
     }
 
     if(message.includes('fact')){
-        const finalText = facts[Math.floor(Math.random()*greetings.length)]
+        const finalText = facts[Math.floor(Math.random()*facts.length)]
         speech.text = finalText
     }
 
