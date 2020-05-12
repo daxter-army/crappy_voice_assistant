@@ -54,14 +54,14 @@
     * Redirect you to Homepage
 
 ## Salient Features
-* You can adjust the Rate & Pitch of the output Voice
-* Change Accent of the output voice from over **21 Voices**
-* Dynamically content generation for *facts*, *favourite actor* & *greetings*
-* Rich, Engaging, Cool, Effects and Responsive UI
-* Amazing Loading Animation while Listening
-* Permanent Storage of Notes you make
-* Comes with **Experimental features**
-* 404 Page if something goes wrong *(nothing will go wrong 😅😎)*
+* You can adjust the Rate & Pitch of the output Voice.
+* Change Accent of the output voice from over **21 Voices**.
+* Dynamically content generation for *facts*, *favourite actor* & *greetings*.
+* Rich, Engaging, Cool, Effects and Responsive UI.
+* Amazing Loading Animation while Listening.
+* Permanent Storage of Notes you make.
+* Comes with **Experimental features**.
+* 404 Page if something goes wrong *(nothing will go wrong).* 😅😎
 
 ## Technology Stack Used
 * Front-End
