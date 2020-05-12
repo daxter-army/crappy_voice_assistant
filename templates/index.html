@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crappy Voice Assisstant</title>
+    <!-- Loading Fontawesome -->
+    <script src="https://kit.fontawesome.com/5077a37d50.js" crossorigin="anonymous"></script>
+    <!-- Loding CSS File !Not working till now -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static',filename='style/style.css')}}"> -->
+    <!-- BootStrap -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+
+    <!-- CSS for Loader -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='style/loader.css')}}">
+    <style>
+      @font-face {
+        font-family: 'headingFont';
+        src: url('../static/font/roboto_slab/roboto_slab_regular.ttf')
+        }
+
+      @font-face {
+        font-family: 'bodyFont';
+        src: url('../static/font/barlow/barlow_regular.ttf')
+        }
+
+      *{
+          margin:0;
+          padding:0;
+      }
+
+      h1{
+        margin-top:-30px;
+        font-family: headingFont;
+        font-size: 5rem;
+      }
+
+      h3{
+        margin: auto;
+        margin-top:-8px;
+        margin-bottom: 80px;
+        font-family: headingFont;
+        font-size: 30px;
+      }
+
+      .wrapper{
+            text-align: center;
+      }
+
+      #data{
+        font-family: bodyFont;
+        font-size: 16px;
+        padding:5px;
+        width:40%;
+      }
+
+      #moto{
+        margin: auto;
+        margin-top:-70px;
+        margin-bottom: 50px;
+        color:#808080;
+        font-family: headingFont;
+        font-size: 15px;
+      }
+
+      #microphone-btn {
+        margin-left:20px;
+        width: 80px;
+        height: 80px;
+        background-color: tomato;
+        color:white;
+        border-radius: 50%;
+        border: none;
+        transition: 0.2s;
+      }
+
+      #microphone-btn:hover{
+        border: 2px tomato solid;
+        background-color: white;
+        color: tomato;
+        transition-delay: 0.1s;
+      }
+
+      #interim-results, #continuous-results{
+        background-color: transparent;
+        font-family: headingFont;
+        padding: 5px;
+        border-radius: 10px;
+      }
+
+      .container-2{
+        margin-top:-35px;
+      }
+      /* SIDEBAR */
+      .sidenav {
+        height: 100%; 
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #151515;
+        overflow-x: hidden;
+        padding-top: 60px;
+        transition: 0.5s;
+      }
+
+      .sidenav a {
+            padding-left:21px;
+            /* padding: 10px 8px 8px 32px; */
+            text-decoration: none;
+            font-family: bodyFont;
+            font-size: 30px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+      .sidenav p {
+            padding-left:21px;
+            font-family: bodyFont;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav ul {
+            padding-left: 75px;
+            font-family: bodyFont;
+            font-size: 17px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav p:hover {
+            color: #f1c40f
+        }
+
+      .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+      }
+
+      .sidenav .closebtn:hover {
+        color: tomato;
+      }
+
+      .menuBtn{
+        color:#2ecc71;
+        font-family:headingFont;
+        margin-left:10px;
+        font-size:25px;
+        cursor:pointer;
+        transition: 0.1s;
+      }
+
+      .menuBtn:hover{
+        color:#9b59b6;
+        border: 2px #9b59b6 solid;
+        border-radius:10px;
+        padding: 5px;
+      }
+
+      #main {
+        transition: margin-left .5s;
+        padding: 20px;
+      }
+
+      @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+      }
+
+      /* Range Bars */
+      .custom-range {
+        -webkit-appearance: none;  /* Override default CSS styles */
+        appearance: none;
+        width: 30%; 
+        height: 15px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        border-radius : 20px;
+      }
+
+      .custom-range:hover {
+        opacity: 1;
+      }
+
+      /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+      .custom-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 15px;
+        height: 25px; 
+        background: #4CAF50; /* Green background */
+        cursor: pointer;
+        border-radius : 20px;
+      }
+
+      .custom-range::-moz-range-thumb {
+        width: 25px; /* Set a specific slider handle width */
+        height: 25px; /* Slider handle height */
+        background: #4CAF50;
+        cursor: pointer;
+      }
+
+      /* Voice Select */
+      select {
+        margin-top:27px;
+        font-family: bodyFont;
+        background-color: transparent;
+        border-radius: 30px;
+        padding: 10px;
+      }
+
+      textarea{
+        text-align: center;
+        margin-top:-20px;
+        padding-left:5px;
+        font-family: bodyFont;
+        font-size: 16px;
+        width: 80%;
+        height: 55px;
+        border: none;
+        resize: none;
+      }
+
+      @media all and (display-mode: fullscreen){
+        textarea {
+          margin-top:50px;
+          height: 100px;
+        }
+
+        select {
+          margin-top:30px;
+        }
+      }
+    </style>
+
+  </head>
+<body>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- Sidebar Content -->
+        <a style="color:tomato;">CRAPPY VOICE ASSISTANT</a>
+        <br>
+        <a style="font-size: 24px;color:#2ecc71;">Settings<span style="font-size:15px;color:red;"> (Experimental)</span></a>
+        <br>
+        <p><> Interim Results : <button id="interim-results" style="border:2px #e74c3c solid;color: #e74c3c;">OFF</button></p>
+        <ul><li style="color:#e67e22;">For instantaneous results</li></ul>
+        <br>
+        <p><> Continous Results : <button id="continuous-results" style="border:2px #2ecc71 solid;color: #2ecc71;">ON</button></p>
+        <ul><li style="color:#e67e22;">If OFF, voice commands will not work</li></ul>
+        <br>
+        <a style="font-size: 24px;color:#2ecc71;">Commands<span style="font-size:15px;color:#f1c40f;"> (Refer Docs for Full Commands)</span></a>
+        <br>
+        <div id=commands>
+          <p><> <strong>go</strong></p>
+          <ul><li>Query from Crappy</li></ul>
+          <p><> <strong>google</strong></p>
+          <ul><li>Search on Google</li></ul>
+          <p><> <strong>clear</strong></p>
+          <ul><li>Clear Input</li></ul>
+          <p><> <strong>terminate</strong></p>
+          <ul><li>Stop Speech Recognition</li></ul>
+          <p><> <strong>* knock knock</strong></p>
+          <ul><li>Start knock knock game</li></ul>
+          <p><> <strong>open</strong></p>
+          <ul><li>Opens a specific Program</li></ul>
+          <p><> <strong>Note this</strong></p>
+          <ul><li>Saves given input as a note</li></ul>
+          <p style="color:#e67e22;"><> and many more...</p>
+        </div>
+  </div>
+  <div id="main">
+    <span class="menuBtn" onclick="openNav()">&#9776; Menu</span>
+    <div class="wrapper">
+        <h1>Crappy</h1>
+            <div class="container-1">
+                <h3>Voice Assistant</h3>
+                <p id='moto'>Simple . Sleek . Smart</p>
+                <!-- action="{{ url_for('crappy')}}"  -->
+                <form id="voice-to-text">
+                    <input id="data" placeholder="Speak something" required autocomplete="off" autofocus>
+                    <!-- <i class="fas fa-microphone-slash"></i> -->
+                    <!-- Only adding this through DOM if Speech Recognition is available -->
+                    <!-- <button><i class="fas fa-microphone"></i></button> -->
+                    <!-- <button id="send-to-server">Send to server</button> -->
+                </form>
+                <p id="result"></p>
+            </div>
+
+            <div class="container-2">
+              <br><br><br><br><br><br><br>
+                    <div class="row">
+                      <div class="column">
+                        <form id="text-to-voice">
+                          <div class="form-group">
+                            <textarea name="" id="text-input" class="form-control" placeholder="Reply From Crappy" required></textarea>
+                          </div>
+                          <br>
+                          <div class="form-group" style="margin-top:-10px;padding-top:10px;border-top: 1px #E9E9E9 solid;">
+                            <label for="rate" style="font-family:bodyFont;">Rate Adjuster</label>
+                            <div id="rate-value" class="badge" style="font-family:bodyFont;margin-bottom:8px;">1</div>
+                            <input type="range" id="rate" class="custom-range" min="0.5" max="2" value="1" step="0.1">
+                          </div>
+                          <br>
+                          <div class="form-group">
+                            <label for="pitch" style="font-family:bodyFont;">Pitch Adjuster</label>
+                            <div id="pitch-value" class="badge" style="font-family:bodyFont;margin-bottom:10px;">1</div>
+                            <input type="range" id="pitch" class="custom-range" min="0" max="2" value="1" step="0.1" style="font-family:bodyFont;">
+                          </div>
+                          <div class="form-group">
+                              <!-- Filling here by JS -->
+                            <select id="voice-select" class="form-control"></select>
+                          </div>
+                          <!-- <button class="btn btn-light btn-lg btn-block">Speak It</button> -->
+                        </form>
+                      </div>
+                    </div>
+            </div>
+    </div>   
+  </div>     
+        <!-- For Voice to Text -->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+
+        <!-- For Text to Voice -->
+        <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}" defer></script> -->
+
+        <!-- BootStrap -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" defer></script>
+        <script>
+        // For Sidebar
+        function openNav() {
+          document.getElementById("mySidenav").style.width = "390px"
+          document.getElementById("main").style.marginLeft = "390px"
+        }
+
+        function closeNav() {
+          document.getElementById("mySidenav").style.width = "0"
+          document.getElementById("main").style.marginLeft = "0"
+        }
+
+        // For Rate-Slider
+        var sliderRate = document.getElementById("rate")
+        var outputRate = document.getElementById("rate-value")
+        // Default slider value
+        outputRate.innerHTML = sliderRate.value
+
+        // Update the current slider value (each time you drag the slider handle)
+        sliderRate.oninput = function() {
+          outputRate.innerHTML = this.value;
+        }
+
+        //For Pitch-Slider
+        var sliderPitch = document.getElementById("pitch")
+        var outputPitch = document.getElementById("pitch-value")
+        // Default slider value
+        outputPitch.innerHTML = sliderPitch.value
+
+        // Update the current slider value (each time you drag the slider handle)
+        sliderPitch.oninput = function() {
+          outputPitch.innerHTML = this.value;
+        }
+        </script>
+</body>
+</html>

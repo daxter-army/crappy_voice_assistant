@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crappy Voice Assistant</title>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/5077a37d50.js" crossorigin="anonymous"></script>
+    <!-- CSS for Loader -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='style/loader.css')}}">
+    <!-- CSS For Page -->
+    <style>
+
+/* MAIN INTERFACE */
+        @font-face {
+            font-family: headingFont;
+            src: url('../static/font/roboto_slab/roboto_slab_regular.ttf')
+        }
+
+        @font-face {
+            font-family: bodyFont;
+            src: url('../static/font/barlow/barlow_regular.ttf')
+        }
+
+        .wrapper{
+            text-align: center;
+        }
+
+        *{
+            margin: 0;
+            padding:0;
+        }
+
+        body {
+            color: #202020;
+            transition: 0.5s;
+        }
+
+        button{
+            position: absolute;
+            top: 75%;
+            left: 47.5%;
+            width: 80px;
+            height: 80px;
+            background-color: tomato;
+            color:white;
+            border-radius: 50%;
+            border: none;
+            transition: 0.2s;
+        }
+
+        button:hover{
+            border: 2px tomato solid;
+            background-color: white;
+            color: tomato;
+            transition-delay: 0.1s;
+        }
+
+        h1 {
+            font-family: headingFont;
+            font-size: 5rem;
+        }
+
+        h2{
+            font-family: headingFont;
+        }
+
+        .question{
+            color: #e67e22;
+        }
+
+        .content{
+            color: #2ecc71;
+        }
+
+        h3{
+            margin: auto;
+            font-family: bodyFont;
+            font-size: 30px;
+            margin-top: 70px;
+        }
+
+        h4{
+            margin-top: 20px;
+            font-family: bodyFont;
+            color:#818181
+        }
+
+        p{
+            display: block;
+        }
+/* SIDEBAR */
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding-left:21px;
+            /* padding: 10px 8px 8px 32px; */
+            text-decoration: none;
+            font-family: bodyFont;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav p {
+            padding-left:21px;
+            font-family: bodyFont;
+            font-size: 20px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav ul {
+            padding-left: 75px;
+            font-family: bodyFont;
+            font-size: 15px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav p:hover {
+            color: #f1c40f
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .menuBtn{
+        color:#2ecc71;
+        font-family:headingFont;
+        margin-left:10px;
+        font-size:25px;
+        cursor:pointer;
+        transition: 0.1s;
+      }
+
+      .menuBtn:hover{
+        color:#9b59b6;
+        border: 2px #9b59b6 solid;
+        border-radius:10px;
+        padding: 5px;
+      }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- Sidebar Content -->
+        <a style="color:tomato;">CRAPPY VOICE ASSISTANT</a>
+        <br>
+        <a style="font-size: 25px;color:#2ecc71;">Functions</a>
+        <br>
+        <p><> Knock-Knock Game</p>
+        <ul><li>Try to say "Knock Knock"</li></ul>
+        <br>
+        <p><> Ask "How are you ?"</p>
+        <ul><li>Will greet you with random greetings</li></ul>
+        <br>
+        <p><> Ask Crappy it's favourite actor.</p>
+        <ul><li>It's choices are really good.</li></ul>
+        <br>
+        <p><> You can also ask for some "facts".</p>
+        <ul><li>Crappy will tell you some unknown facts.</li></ul>
+        <br>
+        <p><> Ask about Crappy.</p>
+        <br>
+        <p><> Want to go to Homepage ?</p>
+        <ul><li>Ask Crappy to "redirect" you.</li></ul>
+    </div>
+    <div id='main'>
+        <span class="menuBtn" onclick="openNav()">&#9776; Menu</span>
+        <div class="wrapper">
+            <h1>Crappy</h1>
+            <br>
+            <h2>Voice Assistant</h2>
+            <button class="talk"><i class="fas fa-microphone fa-2x"></i></button>
+            <h4>try saying "knock knock"</h4>
+            <h3 class="question"></h3>
+            <h3 class="content"></h3>
+        </div>
+    </main>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/knockknock.js') }}" defer></script>
+    <script>
+        // For Sidebar
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "350px";
+            document.getElementById("main").style.marginLeft = "350px";
+            // document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        }
+        
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+            // document.body.style.backgroundColor = "white";
+        }
+    </script>
+</body>
+</html>
