@@ -1,5 +1,5 @@
 # Crappy Voice Assistant
-* A primitive voice assistant which Witty, Cool, Smart & Intelligent, as it's Creators 😎
+* A primitive voice assistant which **Witty**, **Cool**, **Smart** & **Intelligent**, as it's Creators 😎
 
 ## Voice Commands & Functions
 * **Go**
@@ -41,15 +41,15 @@
 * Say **Knock Knock** to go to Little Crappy
 
 * **Knock Knock**
-	* Start Knock Knock game
+    * Start Knock Knock game
 * **How are you ?**
-	* Be ready for exciting answers
+    * Be ready for exciting answers
 * **Tell me a fact**
-	* Randomly give you a fact
+    * Randomly give you a fact
 * **Tell me something about yourself**
-	* Crappy will give it's introduction
+    * Crappy will give it's introduction
 * **Who is your favourite actor ?**
-	* Randomly give you an answer
+    * Randomly give you an answer
 * **Take me to the Homepage**
     * Redirect you to Homepage
 
@@ -57,8 +57,8 @@
 * You can adjust the Rate & Pitch of the output Voice.
 * Change Accent of the output voice from over **21 Voices**.
 * Dynamically content generation for *facts*, *favourite actor* & *greetings*.
-* Rich, Engaging, Cool, Effects and Responsive UI.
-* Amazing Loading Animation while Listening.
+* Rich, Engaging, Cool Effects and Responsive UI.
+* Amazing Loading Animation while Listening to you.
 * Permanent Storage of Notes you make.
 * Comes with **Experimental features**.
 * 404 Page if something goes wrong *(nothing will go wrong).* 😅😎
@@ -82,6 +82,6 @@
     * pyowm
 
 ## Start
-* Driver file -> brain.py
+* Driver file **brain.py**
 * hit **python brain.py** & visit **http://localhost:5000** to see MAGIC 🔮
 * Works best on Chrome, at fullscreen (for best experience)!
