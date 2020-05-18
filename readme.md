@@ -1,5 +1,5 @@
 # Crappy Voice Assistant
-* A primitive voice assistant which **Witty**, **Cool**, **Smart** & **Intelligent**, as it's Creators 😎
+* A primitive voice assistant which is as **Witty**, **Cool**, **Smart** & **Intelligent**, as it's Creators 😎
 
 ## Voice Commands & Functions
 * **Go**
